@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AnswerCheck — Handwritten Answer Evaluation</title>
+  <meta name="description" content="Evaluate handwritten answers using key concepts and provide clear feedback.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark">✓</div>
+    <div>
+      <strong>AnswerCheck</strong>
+      <span>Handwritten Answer Evaluation</span>
+    </div>
+  </div>
+  <div class="header-badge">Academic Assessment</div>
+</header>
+
+<main class="container">
+  <section class="intro">
+    <div>
+      <p class="eyebrow">SMART ANSWER REVIEW</p>
+      <h1>Evaluate handwritten answers with ease.</h1>
+      <p class="intro-text">Upload an answer, add the important concepts you expect, and get an instant score with clear, useful feedback.</p>
+    </div>
+  </section>
+
+  <section class="workspace">
+    <div class="card">
+      <div class="card-title">
+        <span class="step">01</span>
+        <div><h2>Student Answer</h2><p>Upload a clear image of the handwritten answer.</p></div>
+      </div>
+
+      <label class="upload" id="uploadBox">
+        <input id="answerImage" type="file" accept="image/png,image/jpeg,image/jpg">
+        <div class="upload-icon">↑</div>
+        <strong>Choose answer image</strong>
+        <span>PNG or JPG</span>
+      </label>
+
+      <div class="preview-wrap" id="previewWrap" hidden>
+        <img id="preview" alt="Student answer preview">
+        <button class="remove-btn" id="removeImage" type="button">Remove</button>
+      </div>
+
+      <button class="outline-btn full" id="readAnswer" type="button">Read Answer</button>
+
+      <label class="field-label" for="studentText">Answer text</label>
+      <textarea id="studentText" placeholder="The answer will appear here. You can edit it if needed."></textarea>
+      <p class="hint">Tip: clear, well-lit handwriting gives better results.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <span class="step">02</span>
+        <div><h2>Question & Key Concepts</h2><p>Tell the system what a good answer should contain.</p></div>
+      </div>
+
+      <label class="field-label" for="question">Question</label>
+      <textarea id="question" class="short" placeholder="Example: What is Machine Learning?"></textarea>
+
+      <label class="field-label" for="keywords">Key concepts</label>
+      <input id="keywords" placeholder="artificial intelligence, data, learning, prediction, algorithm">
+      <p class="hint">Separate concepts with commas. Add only the important points.</p>
+
+      <label class="field-label" for="marks">Total marks</label>
+      <input id="marks" class="marks-input" type="number" min="1" max="100" value="5">
+
+      <button class="primary-btn full" id="analyze" type="button">Analyze Answer <span>→</span></button>
+    </div>
+  </section>
+
+  <section class="result card" id="result" hidden>
+    <div class="result-head">
+      <div>
+        <p class="eyebrow">ASSESSMENT RESULT</p>
+        <h2>Answer Review</h2>
+      </div>
+      <button class="outline-btn" id="newReview" type="button">New Review</button>
+    </div>
+
+    <div class="score-panel">
+      <div class="score-circle"><span id="scoreValue">0</span><small id="scoreTotal">/ 5</small></div>
+      <div class="score-copy">
+        <div class="status" id="status">Needs improvement</div>
+        <p id="summary">Review the key concepts below.</p>
+      </div>
+    </div>
+
+    <div class="concept-section">
+      <h3>Key concepts</h3>
+      <div class="concept-list" id="conceptList"></div>
+    </div>
+
+    <div class="feedback-box">
+      <div class="feedback-icon">✦</div>
+      <div><h3>Feedback</h3><p id="feedback"></p></div>
+    </div>
+  </section>
+</main>
+
+<footer>AnswerCheck</footer>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
